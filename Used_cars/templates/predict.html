@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://miro.medium.com/v2/resize:fit:1400/0*DGto-wXGud1Wyx_Q');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            max-width: 800px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2 class="text-center mb-4">Car Price Prediction</h2>
+        <form method="post" action="{% url 'Used_cars:predict' %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Brand">Brand:</label>
+                        <select class="form-control" id="Brand" name="Brand" required>
+                            <option value="Brand1">Maruthi</option>
+                            <option value="Brand2">Toyota</option>
+                            <option value="Brand3">Ford</option>
+                            <option value="Brand4">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Location">Location:</label>
+                        <input type="text" class="form-control" id="Location" name="Location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Fuel">Fuel:</label>
+                        <input type="text" class="form-control" id="Fuel" name="Fuel" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Transmission">Transmission:</label>
+                        <input type="text" class="form-control" id="Transmission" name="Transmission" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Year">Year:</label>
+                        <input type="number" class="form-control" id="Year" name="Year" required><br>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    
+                    
+                    <div class="form-group">
+                        <label for="Kms">Kms:</label>
+                        <input type="number" class="form-control" id="Kms" name="Kms" required>
+                    </div>
+                    <div class="form-group">
+                        <label for "Owner">Owner:</label>
+                        <input type="number" class="form-control" id="Owner" name="Owner" required>
+                    </div>
+                    <div class="form-group">
+                        <label for "Mileage">Mileage:</label>
+                        <input type="number" class="form-control" id="Mileage" name="Mileage" required>
+                    </div>
+                    <div class="form-group">
+                        <label for "Engine">Engine:</label>
+                        <input type="number" class="form-control" id="Engine" name="Engine" required>
+                    </div>
+                    <div class="form-group">
+                        <label for "Power">Power:</label>
+                        <input type="number" class="form-control" id="Power" name="Power" required>
+                    </div>
+                    <div class="form-group">
+                        <label for "Seats">Seats:</label>
+                        <input type="number" class="form-control" id="Seats" name="Seats" required>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Predict Price</button>
+        </form>
+        {% if prediction %}
+        <div class="alert alert-info mt-3">
+            <h3 class="prediction-title">Prediction:</h3>
+            <p class="prediction-text">Your car's estimated price is <span class="prediction-price">Rs. {{ prediction }} lakhs</span>. Please note that this price may vary based on the condition of the car and other factors.</p>
+        </div>
+        {% endif %}
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
